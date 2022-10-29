@@ -1,14 +1,24 @@
 version: "3.8"
 services:
   api:
+    image: api_c
     build: ./api
+    deploy:
+      mode: replicated
+      replicas: 2
+
     container_name: api_c
     ports:
       - '4000:4000'
     volumes:
       - ./api:/app
   myblog:
+    image: myblog_c
     build: ./myblog
+    deploy:
+      mode: replicated
+      replicas: 2
+
     container_name: myblog_c
     ports:
       - '3009:3000'
